@@ -62,3 +62,16 @@ export async function renderCertificate(template: ArrayBuffer, name: string) {
 
   return canvas.toBuffer('image/png');
 }
+
+function ensureCertificateFont() {
+  if (registeredFont) return;
+
+  const fontPath = path.join(process.cwd(), 'assets/fonts/DejaVuSerif-Bold.ttf');
+  const success = GlobalFonts.registerFromPath(fontPath, 'CertificateSerif');
+
+  if (!success) {
+    console.error('Failed to register certificate font at', fontPath);
+  }
+
+  registeredFont = true;
+}
