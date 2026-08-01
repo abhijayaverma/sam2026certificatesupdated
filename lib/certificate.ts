@@ -20,15 +20,13 @@ function readNumberEnv(name: string, fallback: number) {
 
 function getTextOptions(): CertificateTextOptions {
   return {
-    xRatio: readNumberEnv('CERT_NAME_X_RATIO', 0.5),
-    yRatio: readNumberEnv('CERT_NAME_Y_RATIO', 0.56),
-    maxWidthRatio: readNumberEnv('CERT_NAME_MAX_WIDTH_RATIO', 0.68),
-    fontSizeRatio: readNumberEnv('CERT_NAME_FONT_SIZE_RATIO', 0.055),
-    minFontSize: readNumberEnv('CERT_NAME_MIN_FONT_SIZE', 16),
-    fontSizePx: process.env.CERT_NAME_FONT_SIZE_PX
-      ? readNumberEnv('CERT_NAME_FONT_SIZE_PX', 0)
-      : undefined,
-    color: process.env.CERT_NAME_COLOR || '#1f2937',
+    xRatio: 0.5,
+    yRatio: 0.552,
+    maxWidthRatio: 0.58,
+    fontSizeRatio: 0.025,
+    minFontSize: 16,
+    fontSizePx: 22,
+    color: '#1f2937',
   };
 }
 
