@@ -1,15 +1,15 @@
 import path from 'node:path';
-import { createCanvas, loadImage, registerFont } from 'canvas';
+import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas';
 
 let registeredFont = false;
 
 function ensureCertificateFont() {
   if (registeredFont) return;
 
-  registerFont(path.join(process.cwd(), 'assets/fonts/DejaVuSerif-Bold.ttf'), {
-    family: 'CertificateSerif',
-    weight: '700',
-  });
+  GlobalFonts.registerFromPath(
+    path.join(process.cwd(), 'assets/fonts/DejaVuSerif-Bold.ttf'),
+    'CertificateSerif',
+  );
 
   registeredFont = true;
 }

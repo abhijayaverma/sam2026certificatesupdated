@@ -17,7 +17,7 @@
     "sonner": "latest",
     "xlsx": "latest",
     "zod": "latest",
-    "canvas": "latest"
+    "@napi-rs/canvas": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
