@@ -1,0 +1,5 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { adminClient } from '@/lib/supabase';
+import { ensureRouteAdmin } from '@/lib/route-auth';
+export async function POST(req: NextRequest) { const unauthorized = await ensureRouteAdmin(); if (unauthorized) return unauthorized; const form = await req.formData(); const file = form.get('template'); if (!(file instanceof File) || file.type !== 'image/png') return NextResponse.json({ error: 'PNG template is required' }, { status: 400 }); const { error } = await adminClient().storage.from('certificate-templates').upload('active/template.png', await file.arrayBuffer(), { contentType: 'image/png', upsert: true }); if (error) return NextResponse.json({ error: error.message }, { status: 500 }); return NextResponse.json({ ok: true }); }
+export async function GET() { const unauthorized = await ensureRouteAdmin(); if (unauthorized) return unauthorized; const { data } = adminClient().storage.from('certificate-templates').getPublicUrl('active/template.png'); return NextResponse.json({ templateUrl: data.publicUrl }); }

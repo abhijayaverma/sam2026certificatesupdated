@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/ssr": "latest",
+    "@supabase/supabase-js": "latest",
+    "framer-motion": "latest",
+    "lucide-react": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sonner": "latest",
+    "xlsx": "latest",
+    "zod": "latest",
+    "canvas": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "10.4.20",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "typescript": "latest"
+  }
+}

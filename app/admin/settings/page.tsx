@@ -1,0 +1,2 @@
+import { requireAdmin } from '@/lib/auth'; import { AdminShell } from '@/components/AdminShell';
+export default async function Settings(){await requireAdmin(); return <AdminShell><h1 className="text-4xl font-black">Settings</h1><div className="glass mt-6 rounded-3xl p-6">Configure Supabase Auth admins in your Supabase project and keep service-role keys only in Vercel server environment variables.</div></AdminShell>}

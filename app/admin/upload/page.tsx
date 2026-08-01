@@ -1,0 +1,2 @@
+import { requireAdmin } from '@/lib/auth'; import { AdminShell } from '@/components/AdminShell'; import { FileUpload } from '@/components/FileUpload';
+export default async function Upload(){await requireAdmin(); return <AdminShell><h1 className="text-4xl font-black">Upload Excel</h1><p className="mt-2 text-slate-600">Columns required: Roll Number, Name.</p><FileUpload endpoint="/api/upload" field="file" accept=".xlsx,.xls" label="Upload Excel"/></AdminShell>}

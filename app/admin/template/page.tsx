@@ -1,0 +1,2 @@
+import { requireAdmin } from '@/lib/auth'; import { AdminShell } from '@/components/AdminShell'; import { FileUpload } from '@/components/FileUpload';
+export default async function Template(){await requireAdmin(); return <AdminShell><h1 className="text-4xl font-black">Certificate Template</h1><p className="mt-2 text-slate-600">Upload one PNG template. The newest file becomes active.</p><FileUpload endpoint="/api/settings" field="template" accept="image/png" label="Upload PNG Template"/></AdminShell>}
