@@ -1,4 +1,18 @@
-import { createCanvas, loadImage } from 'canvas';
+import path from 'node:path';
+import { createCanvas, loadImage, registerFont } from 'canvas';
+
+let registeredFont = false;
+
+function ensureCertificateFont() {
+  if (registeredFont) return;
+
+  registerFont(path.join(process.cwd(), 'assets/fonts/DejaVuSerif-Bold.ttf'), {
+    family: 'CertificateSerif',
+    weight: '700',
+  });
+
+  registeredFont = true;
+}
 
 type CertificateTextOptions = {
   xRatio: number;
@@ -9,14 +23,6 @@ type CertificateTextOptions = {
   fontSizePx?: number;
   color: string;
 };
-
-function readNumberEnv(name: string, fallback: number) {
-  const value = process.env[name];
-  if (!value) return fallback;
-
-  const parsed = Number(value);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
 
 function getTextOptions(): CertificateTextOptions {
   return {
@@ -31,6 +37,8 @@ function getTextOptions(): CertificateTextOptions {
 }
 
 export async function renderCertificate(template: ArrayBuffer, name: string) {
+  ensureCertificateFont();
+
   const img = await loadImage(Buffer.from(template));
   const canvas = createCanvas(img.width, img.height);
   const ctx = canvas.getContext('2d');
@@ -45,7 +53,7 @@ export async function renderCertificate(template: ArrayBuffer, name: string) {
   let size = options.fontSizePx || Math.round(img.width * options.fontSizeRatio);
 
   do {
-    ctx.font = `700 ${size}px Georgia, Times New Roman, serif`;
+    ctx.font = `700 ${size}px CertificateSerif, DejaVu Serif, Georgia, Times New Roman, serif`;
     if (ctx.measureText(name).width <= maxWidth) break;
     size -= 2;
   } while (size > options.minFontSize);
