@@ -31,7 +31,7 @@ function getTextOptions(): CertificateTextOptions {
     maxWidthRatio: 0.58,
     fontSizeRatio: 0.025,
     minFontSize: 16,
-    fontSizePx: 22,
+    fontSizePx: 35,
     color: '#1f2937',
   };
 }
